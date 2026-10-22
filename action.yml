@@ -1,0 +1,20 @@
+name: 'ZQ-GATE'
+description: 'Run the ZQ-GATE trivalent decision battery (1/0/REFUSED) in CI — ZeptonQL kernel, sealed receipts.'
+author: 'Serena Quantum Solutions'
+branding:
+  icon: 'check-circle'
+  color: 'blue'
+inputs:
+  battery:
+    description: 'Which battery to run (all | battery | verify-receipts)'
+    required: false
+    default: 'all'
+runs:
+  using: 'composite'
+  steps:
+    - run: python3 -m pip install --quiet numpy
+      shell: bash
+    - run: python3 ${{ github.action_path }}/src/battery_ci.py
+      shell: bash
+      env:
+        ZQG_MODE: ${{ inputs.battery }}
