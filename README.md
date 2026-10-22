@@ -25,3 +25,11 @@ Quantum advantage declared, never inflated: 1 oracle call vs 2^(n-1)+1
 classical deterministic worst-case calls.
 
 Free forever, MIT. Part of the ZEPHIRUM product line: [zqea-verify](https://github.com/marketplace/actions/z-qea-receipt-verifier), [z-anyon-lab](https://github.com/SerenaSolutions/z-anyon-lab), [zqea-seal](https://github.com/SerenaSolutions/zqea-seal).
+
+## Prova de conceito (hardware real)
+
+Bateria trivalente completa (1/0/RECUSADO) executada no silício da IBM, job `dbcnp4s24mrc73ck0v80` (ibm_marrakesh, 512 shots).
+
+Recibo selado: [`poc/receipt_zqgate_hw.json`](poc/receipt_zqgate_hw.json) — verificável com `python3 zqea_verify.py poc/receipt_zqgate_hw.json --strict-pq`.
+
+Bateria completa do confronto multilíngue (OpenQASM 3, Qiskit, Cirq, PennyLane, Braket, Q#): [SerenaSolutions/quantum-poc](https://github.com/SerenaSolutions/quantum-poc).
