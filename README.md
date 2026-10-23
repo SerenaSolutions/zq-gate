@@ -33,3 +33,9 @@ Bateria trivalente completa (1/0/RECUSADO) executada no silício da IBM, job `db
 Recibo selado: [`poc/receipt_zqgate_hw.json`](poc/receipt_zqgate_hw.json) — verificável com `python3 zqea_verify.py poc/receipt_zqgate_hw.json --strict-pq`.
 
 Bateria completa do confronto multilíngue (OpenQASM 3, Qiskit, Cirq, PennyLane, Braket, Q#): [SerenaSolutions/quantum-poc](https://github.com/SerenaSolutions/quantum-poc).
+
+## Changelog
+
+### v1.1.0 (2026-10-23)
+- Kernel ZYQL v1.9.0: `ZYQL_EPSILON` (margem adaptativa) + porta GHZ do dispositivo.
+- BUGFIX: oracle balanced `x ^ 1` → `x & 1` (interferência limpa, p0=0.0).

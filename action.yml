@@ -1,5 +1,5 @@
 name: 'ZQ-GATE'
-description: 'Run the ZQ-GATE trivalent decision battery (1/0/REFUSED) in CI — ZeptonQL kernel, sealed receipts.'
+description: 'Run the ZQ-GATE trivalent battery (1/0/REFUSED) in CI — ZYQL v1.9.0 kernel, GHZ device gate, sealed receipts.'
 author: 'Serena Quantum Solutions'
 branding:
   icon: 'check-circle'

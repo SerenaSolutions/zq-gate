@@ -18,16 +18,27 @@ MODE = (os.environ.get("ZQG_MODE") or "all").strip().lower()
 FAILED = []
 
 
+from zyql_quantum_gate import ZYQLQuantumGate, ghz_integrity
+
+
 def run_battery():
-    from zyql_quantum_gate import ZYQLQuantumGate
     cases = [
         ("constant-1", lambda x: 1, "1"),
         ("constant-0", lambda x: 0, "0"),
-        ("balanced",   lambda x: x ^ 1, "REFUSED"),
+        ("balanced",   lambda x: x & 1, "REFUSED"),
     ]
     print("== ZQ-GATE trivalent decision battery (noiseless, canonical) ==")
+    gate = ghz_integrity(n=3, shots=1024, seed=1701)
+    trusted = gate["device_trusted"]
+    print(f"GHZ integrity gate (v1.9.0): fidelity={gate['fidelity_ghz']} "
+          f"-> {'DISPOSITIVO CONFIÁVEL' if trusted else 'DISPOSITIVO INCONFIÁVEL'}")
+    if not trusted:
+        print("[FAIL] device gate: QPU não passou na porta GHZ — bateria abortada")
+        FAILED.append("device_gate:ghz")
+        return
     for name, oracle, expected in cases:
-        r = ZYQLQuantumGate(3, oracle).run_quantum()
+        eps = float(os.environ.get("ZYQL_EPSILON", "0"))
+        r = ZYQLQuantumGate(3, oracle).run_quantum(epsilon=eps if eps > 0 else None)
         ok = str(r["decision"]) == expected
         print(f"[{'PASS' if ok else 'FAIL'}] {name}: decision={r['decision']} "
               f"(expected {expected}) p0={r.get('p0')} calls={r.get('oracle_calls')}")
